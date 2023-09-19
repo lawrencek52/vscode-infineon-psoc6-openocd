@@ -121,8 +121,8 @@ Bluetooth observer. I will build my samples in the Documents directory.
 
 ```
 cd \~/Documents
-cp -r \~/zephyrproject/zephyr/samples/bluetooth/observer bluetooth\_observer
-cd bluetooth\_observer
+cp -r \~/zephyrproject/zephyr/samples/bluetooth/observer bluetooth_observer
+cd bluetooth_observer
 west build -b cy8cproto\_062\_4343w
 west flash --openocd \~/.local/bin/openocd/bin/openocd
 tio /dev/ttyACM0
@@ -193,7 +193,7 @@ Fetch the vscode settings from github:
 
 ```
 cd ~/Documents
-git clone https://github.com/lawrencek52/vscode\-infineon-psoc6-openocd.git
+git clone https://github.com/lawrencek52/vscode-infineon-psoc6-openocd.git
 ```
 
 then copy the appropriate files into the .vscode subdirectory of
