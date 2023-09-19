@@ -81,15 +81,15 @@ CY8CPROTO-062-4343W board and the instructions are here:
 
 Execute the command
 
-```
+```bash
 west blobs fetch hal\_infineon
 ```
 
 Install the Infineon version of openocd, by executing the following
 commands:
 
-```
-mkdir -p \~/.local/bin
+```bash
+mkdir -p ~/.local/bin
 cd ~/.local/bin
 wget https://github.com/Infineon/openocd/releases/download/\
     release-v5.0.0/openocd-5.0.0.2401-linux.tar.gz
@@ -105,7 +105,7 @@ program ‘tio’ for its simplicity. It defaults to the most common serial
 settings of 115,200, and 8N1 so there is no need to change these
 defaults.
 
-```
+```bash
 sudo apt install tio
 sudo apt install apt-transport-https
 ```
