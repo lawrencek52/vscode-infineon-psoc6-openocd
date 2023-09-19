@@ -82,7 +82,7 @@ CY8CPROTO-062-4343W board and the instructions are here:
 Execute the command
 
 ```bash
-west blobs fetch hal\_infineon
+west blobs fetch hal_infineon
 ```
 
 Install the Infineon version of openocd, by executing the following
@@ -121,11 +121,11 @@ To get started we will build a reasonably complex sample program, the
 Bluetooth observer. I will build my samples in the Documents directory.
 
 ```
-cd \~/Documents
-cp -r \~/zephyrproject/zephyr/samples/bluetooth/observer bluetooth_observer
+cd ~/Documents
+cp -r ~/zephyrproject/zephyr/samples/bluetooth/observer bluetooth_observer
 cd bluetooth_observer
-west build -b cy8cproto\_062\_4343w
-west flash --openocd \~/.local/bin/openocd/bin/openocd
+west build -b cy8cproto_062_4343w
+west flash --openocd ~/.local/bin/openocd/bin/openocd
 tio /dev/ttyACM0
 ```
 
@@ -249,12 +249,11 @@ tio will start and connect to the board, typical output from tio is:
 ```
 
 Now start the program by pressing the “play” icon in the top center of
-the VSCode window. The tio will display the output from the sample
+the VSCode window. The tio window will display the output from the sample
 program, this is what I see:
 
 ```
 lawrence@Ubuntu22:\~/Documents/bluetooth\_observer$ tio /dev/ttyACM0
-
 [tio 12:13:42] tio v1.32
 [tio 12:13:42] Press ctrl-t q to quit
 [tio 12:13:42] Connected
