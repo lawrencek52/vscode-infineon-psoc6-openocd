@@ -11,9 +11,7 @@
     // "modustoolbox.toolsPath": "${userHome}/ModusToolbox/tools_3.1",
     "zephyr.basePath": "${userHome}/zephyrproject/zephyr",
     "infineon.openocdPath": "${userHome}/.local/bin/",
-
-    // PSoC6 Build Folder
-    "zephyr.psoc6.buildFolder": "build",
+    "zephyr.board": "cy8cproto_062_4343w",
 
     // SVD File Paths
     "zephyr.psoc6.svdFilePath": "${config:zephyr.basePath}/../modules/hal/infineon/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_02.svd",

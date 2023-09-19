@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/home/lawrence/zephyrproject/zephyr/include/**",
-                "${workspaceFolder}/build/zephyr/include/generated"
+                "${workspaceFolder}/build/zephyr/include/generated/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang-14",

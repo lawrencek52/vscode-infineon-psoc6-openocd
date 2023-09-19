@@ -10,13 +10,13 @@
             "args": [
                 "--norc",
                 "-c",
-                "source ${config:zephyr.venvPath}/bin/activate; west build -p auto -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+                "source ${config:zephyr.venvPath}/bin/activate; west build -p auto -b ${config:zephyr.board}"
             ],
             "windows": {
                 "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
                 "args": [
                     "-c",
-                    "export PATH=/bin:/usr/bin:$PATH ; dos2unix -q ${config:zephyr.venvPath}/Scripts/activate; source ${config:zephyr.venvPath}/Scripts/activate; west build -p auto -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+                    "export PATH=/bin:/usr/bin:$PATH ; dos2unix -q ${config:zephyr.venvPath}/Scripts/activate; source ${config:zephyr.venvPath}/Scripts/activate; west build -p auto -b ${config:zephyr.board}"
                 ]
             },
             "problemMatcher": "$gcc",
@@ -32,13 +32,13 @@
             "args": [
                 "--norc",
                 "-c",
-                "source ${config:zephyr.venvPath}/bin/activate; west flash -r pyocd -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+                "source ${config:zephyr.venvPath}/bin/activate; west flash -r pyocd  -b ${config:zephyr.board}"
             ],
             "windows": {
                 "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
                 "args": [
                     "-c",
-                    "export PATH=/bin:/usr/bin:$PATH ; dos2unix -q ${config:zephyr.venvPath}/Scripts/activate; source ${config:zephyr.venvPath}/Scripts/activate; west flash -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+                    "export PATH=/bin:/usr/bin:$PATH ; dos2unix -q ${config:zephyr.venvPath}/Scripts/activate; source ${config:zephyr.venvPath}/Scripts/activate; west flash"
                 ]
             },
             "problemMatcher": "$gcc",

@@ -7,7 +7,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.elf",
+            "executable": "build/zephyr/zephyr.elf",
             "servertype": "openocd",
             "searchDir": [
                 "${workspaceFolder}",
@@ -21,7 +21,7 @@
                 "-enable-pretty-printing",
                 "set remotetimeout 15",
                 // Comment this next line out if you don't want to reload program
-                "monitor program {${config:zephyr.basePath}/build/zephyr/zephyr.elf}",
+                "monitor program {build/zephyr/zephyr.elf}",
                 "monitor reset run",
                 "monitor psoc6 reset_halt sysresetreq"
             ],
@@ -66,7 +66,7 @@
             "type": "cortex-debug",
             "request": "attach",
             "cwd": "${workspaceFolder}",
-            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.elf",
+            "executable": "build/zephyr/zephyr.elf",
             "servertype": "openocd",
             "searchDir": [
                 "${workspaceFolder}",
@@ -106,7 +106,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.hex",
+            "executable": "build/zephyr/zephyr.hex",
             "servertype": "openocd",
             "searchDir": [
                 "${workspaceFolder}",
@@ -139,7 +139,7 @@
             "type": "cortex-debug",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.elf", //was .hex
+            "executable": "build/zephyr/zephyr.elf", //was .hex
             "servertype": "openocd",
             "searchDir": [
                 "${workspaceFolder}",
@@ -151,7 +151,7 @@
             "overrideLaunchCommands": [
                 "set remotetimeout 15",
                 "monitor psoc6 sflash_restrictions 1",
-                "monitor program {${config:zephyr.basePath}/build/zephyr/zephyr.hex}",
+                "monitor program {build/zephyr/zephyr.hex}",
                 "monitor reset_config srst_only",
                 "monitor reset run",
                 "monitor psoc6.dap dpreg 0x04 0x00"
