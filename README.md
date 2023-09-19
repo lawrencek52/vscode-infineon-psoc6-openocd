@@ -90,8 +90,9 @@ commands:
 
 ```
 mkdir -p \~/.local/bin
-cd \~/.local/bin
-wget https://github.com/Infineon/openocd/releases/download/release-v5.0.0/openocd-5.0.0.2401-linux.tar.gz
+cd ~/.local/bin
+wget https://github.com/Infineon/openocd/releases/download/\
+    release-v5.0.0/openocd-5.0.0.2401-linux.tar.gz
 tar -vxzf openocd-5.0.0.2401-linux.tar.gz
 rm openocd-5.0.0.2401-linux.tar.gz
 ```
