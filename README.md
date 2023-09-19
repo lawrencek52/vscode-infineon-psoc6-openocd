@@ -81,22 +81,20 @@ CY8CPROTO-062-4343W board and the instructions are here:
 
 Execute the command
 
-> west blobs fetch hal\_infineon
+```
+west blobs fetch hal\_infineon
+```
 
 Install the Infineon version of openocd, by executing the following
 commands:
 
-> mkdir -p \~/.local/bin
-> 
-> cd \~/.local/bin
-> 
-> wget https://github.com/Infineon/openocd/releases/\\
-> 
-> download/release-v5.0.0/openocd-5.0.0.2401-linux.tar.gz
-> 
-> tar -vxzf openocd-5.0.0.2401-linux.tar.gz
-> 
-> rm openocd-5.0.0.2401-linux.tar.gz
+```
+mkdir -p \~/.local/bin
+cd \~/.local/bin
+wget https://github.com/Infineon/openocd/releases/download/release-v5.0.0/openocd-5.0.0.2401-linux.tar.gz
+tar -vxzf openocd-5.0.0.2401-linux.tar.gz
+rm openocd-5.0.0.2401-linux.tar.gz
+```
 
 **Some Handy Programs**
 
@@ -106,9 +104,10 @@ program ‘tio’ for its simplicity. It defaults to the most common serial
 settings of 115,200, and 8N1 so there is no need to change these
 defaults.
 
-> sudo apt install tio
-> 
-> sudo apt install apt-transport-https
+```
+sudo apt install tio
+sudo apt install apt-transport-https
+```
 
 We will use tio later to monitor the serial output from the board.
 
@@ -120,19 +119,14 @@ you will need the apt-transport-https utility.
 To get started we will build a reasonably complex sample program, the
 Bluetooth observer. I will build my samples in the Documents directory.
 
-> cd \~/Documents
-> 
-> cp -r \~/zephyrproject/zephyr/samples/bluetooth/\\
-> 
-> observer bluetooth\_observer
-> 
-> cd bluetooth\_observer
-> 
-> west build -b cy8cproto\_062\_4343w
-> 
-> west flash --openocd \~/.local/bin/openocd/bin/openocd
-> 
-> tio /dev/ttyACM0
+```
+cd \~/Documents
+cp -r \~/zephyrproject/zephyr/samples/bluetooth/observer bluetooth\_observer
+cd bluetooth\_observer
+west build -b cy8cproto\_062\_4343w
+west flash --openocd \~/.local/bin/openocd/bin/openocd
+tio /dev/ttyACM0
+```
 
 At this point tio should display the Bluetooth devices that the observer
 has seen nearby. Since tio started after the program started, you may
@@ -140,49 +134,25 @@ not see the Booting message, simply press the reset switch on the board
 and restart the program, or you can open a second terminal window and
 leave tio running in it all the time. Here is what I see:
 
-> \[tio 17:20:26\] tio v1.32
-> 
-> \[tio 17:20:26\] Press ctrl-t q to quit
-> 
-> \[tio 17:20:26\] Connected
-> 
-> \*\*\* Booting Zephyr OS build zephyr-v3.4.0-1843-g68ee177a01f3 \*\*\*
-> 
-> Starting Observer Demo
-> 
-> Started scanning...
-> 
-> Exiting main thread.
-> 
-> Device found: 29:3D:1A:7B:A0:58 (random) (RSSI -51), type 3, AD data
-> len 31
-> 
-> Device found: DE:59:87:F3:7A:D6 (random) (RSSI -86), type 0, AD data
-> len 14
-> 
-> Device found: 58:E7:BF:72:DF:C9 (random) (RSSI -89), type 3, AD data
-> len 31
-> 
-> Device found: 3D:7A:30:68:C9:E1 (random) (RSSI -69), type 3, AD data
-> len 31
-> 
-> Device found: 78:F8:F8:E7:F0:08 (random) (RSSI -84), type 2, AD data
-> len 28
-> 
-> Device found: F1:97:F3:14:25:CC (random) (RSSI -92), type 0, AD data
-> len 21
-> 
-> Device found: 49:09:09:72:99:09 (random) (RSSI -93), type 2, AD data
-> len 28
-> 
-> Device found: 4A:0A:0A:AA:D3:EF (random) (RSSI -94), type 2, AD data
-> len 28
-> 
-> Device found: 76:85:FC:7F:2F:41 (random) (RSSI -98), type 2, AD data
-> len 28
-> 
-> Device found: 78:E3:6D:8E:8D:5E (public) (RSSI -95), type 0, AD data
-> len 19
+```
+\[tio 17:20:26\] tio v1.32
+\[tio 17:20:26\] Press ctrl-t q to quit
+\[tio 17:20:26\] Connected
+\*\*\* Booting Zephyr OS build zephyr-v3.4.0-1843-g68ee177a01f3 \*\*\*
+Starting Observer Demo
+Started scanning...
+Exiting main thread.
+Device found: 29:3D:1A:7B:A0:58 (random) (RSSI -51), type 3, AD data len 31
+Device found: DE:59:87:F3:7A:D6 (random) (RSSI -86), type 0, AD data len 14
+Device found: 58:E7:BF:72:DF:C9 (random) (RSSI -89), type 3, AD data len 31
+Device found: 3D:7A:30:68:C9:E1 (random) (RSSI -69), type 3, AD data len 31
+Device found: 78:F8:F8:E7:F0:08 (random) (RSSI -84), type 2, AD data len 28
+Device found: F1:97:F3:14:25:CC (random) (RSSI -92), type 0, AD data len 21
+Device found: 49:09:09:72:99:09 (random) (RSSI -93), type 2, AD data len 28
+Device found: 4A:0A:0A:AA:D3:EF (random) (RSSI -94), type 2, AD data len 28
+Device found: 76:85:FC:7F:2F:41 (random) (RSSI -98), type 2, AD data len 28
+Device found: 78:E3:6D:8E:8D:5E (public) (RSSI -95), type 0, AD data len 19
+```
 
 So far we have installed zephyr, the zephyr SDK, and we have tested that
 we can build a complex program, load it to the board, and see results
@@ -197,18 +167,20 @@ The download is quite large (\~92MB) so it may take a while to download.
 
 Then install VSCode deb package with the commands:
 
-> cd \~/Downloads
-> 
-> sudo apt install ./ code\_1.82.1-1694163687\_amd64.deb
+```
+cd \~/Downloads
+sudo apt install ./ code\_1.82.1-1694163687\_amd64.deb
+```
 
 Note the version you download will most likely be different than 1.82.1,
 change the version information to match what you downloaded. Once you
 have installed from the .deb file all future updates and re-installs can
 be done by running the following commands:
 
-> sudo apt update
-> 
-> sudo apt install code
+```
+sudo apt update
+sudo apt install code
+```
 
 **Adding VSCode configurations to the sample project**
 
@@ -219,18 +191,18 @@ subdirectory of \~/Documents/bluetooth\_observer.
 
 Fetch the vscode settings from github:
 
-> cd \~/Documents
-> 
-> git clone https://github.com/lawrencek52/vscode\\
-> 
-> \-infineon-psoc6-openocd.git
+```
+cd \~/Documents
+git clone https://github.com/lawrencek52/vscode\-infineon-psoc6-openocd.git
+```
 
 then copy the appropriate files into the .vscode subdirectory of
 \~/Documents/bluetooth\_observer. Use the following commands.
 
-> cd \~/Documents/vscode-infineon-psoc6-openocd
-> 
-> cp -r .vscode \~/Documents/bluetooth\_observer/
+```
+cd \~/Documents/vscode-infineon-psoc6-openocd
+cp -r .vscode \~/Documents/bluetooth\_observer/
+```
 
 **Starting VSCode and open the sample program**
 
@@ -263,60 +235,66 @@ window select Terminal-\>New Terminal, this will open a new terminal
 window at the bottom of the VSCode and show a bash command prompt. Start
 the tio program to monitor the serial output from the board:
 
-> tio /dev/ttyACM0
+```
+tio /dev/ttyACM0
+```
 
 tio will start and connect to the board, typical output from tio is:
 
-> \[tio 12:09:17\] tio v1.32
-> 
-> \[tio 12:09:17\] Press ctrl-t q to quit
-> 
-> \[tio 12:09:17\] Connected
+```
+\[tio 12:09:17\] tio v1.32
+
+\[tio 12:09:17\] Press ctrl-t q to quit
+
+\[tio 12:09:17\] Connected
+```
 
 Now start the program by pressing the “play” icon in the top center of
 the VSCode window. The tio will display the output from the sample
 program, this is what I see:
 
-> lawrence@Ubuntu22:\~/Documents/bluetooth\_observer$ tio /dev/ttyACM0
-> 
-> \[tio 12:13:42\] tio v1.32
-> 
-> \[tio 12:13:42\] Press ctrl-t q to quit
-> 
-> \[tio 12:13:42\] Connected
-> 
-> Starting Observer Demo
-> 
-> Started scanning...
-> 
-> Exiting main thread.
-> 
-> Device found: 27:5C:81:09:95:71 (random) (RSSI -75), type 3, AD data
-> len 31
-> 
-> Device found: 2B:BF:B8:75:CE:EB (random) (RSSI -39), type 3, AD data
-> len 31
-> 
-> Device found: F1:97:F3:14:25:CC (random) (RSSI -92), type 0, AD data
-> len 21
-> 
-> Device found: CC:F4:11:86:2C:D9 (public) (RSSI -92), type 2, AD data
-> len 28
-> 
-> Device found: 11:F9:8E:8F:AA:20 (random) (RSSI -93), type 3, AD data
-> len 31
-> 
-> Device found: 44:05:A5:41:72:9A (random) (RSSI -98), type 2, AD data
-> len 28
-> 
-> Device found: 6D:AD:AD:E2:EA:D5 (random) (RSSI -70), type 2, AD data
-> len 28
-> 
-> Device found: 7F:7F:FF:7E:76:F1 (random) (RSSI -92), type 2, AD data
-> len 28
-> 
-> Device found: CD:9D:FC:15:9A:FE (random) (RSSI -83), type 3, AD data
-> len 8
+```
+lawrence@Ubuntu22:\~/Documents/bluetooth\_observer$ tio /dev/ttyACM0
+
+\[tio 12:13:42\] tio v1.32
+
+\[tio 12:13:42\] Press ctrl-t q to quit
+
+\[tio 12:13:42\] Connected
+ 
+ Starting Observer Demo
+ 
+ Started scanning...
+ 
+ Exiting main thread.
+ 
+ Device found: 27:5C:81:09:95:71 (random) (RSSI -75), type 3, AD data
+ len 31
+ 
+ Device found: 2B:BF:B8:75:CE:EB (random) (RSSI -39), type 3, AD data
+ len 31
+ 
+ Device found: F1:97:F3:14:25:CC (random) (RSSI -92), type 0, AD data
+ len 21
+ 
+ Device found: CC:F4:11:86:2C:D9 (public) (RSSI -92), type 2, AD data
+ len 28
+ 
+ Device found: 11:F9:8E:8F:AA:20 (random) (RSSI -93), type 3, AD data
+ len 31
+ 
+ Device found: 44:05:A5:41:72:9A (random) (RSSI -98), type 2, AD data
+ len 28
+ 
+ Device found: 6D:AD:AD:E2:EA:D5 (random) (RSSI -70), type 2, AD data
+ len 28
+ 
+ Device found: 7F:7F:FF:7E:76:F1 (random) (RSSI -92), type 2, AD data
+ len 28
+ 
+ Device found: CD:9D:FC:15:9A:FE (random) (RSSI -83), type 3, AD data
+ len 8
+```
 
 **Adding breakpoints**
 
@@ -341,4 +319,6 @@ Feel free to send me a pull request or patch if you find errors in the
 various json files or in my instructions. I will be happy to update
 things as necessary.
 
-> https://github.com/lawrencek52/vscode-infineon-psoc6-openocd
+```
+https://github.com/lawrencek52/vscode-infineon-psoc6-openocd
+```
