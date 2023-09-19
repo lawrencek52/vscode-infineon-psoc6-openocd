@@ -1,0 +1,171 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+        {
+            //PSoC6 Launch Configs
+            "name": "Launch PSoC6 CM4",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.elf",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceFolder}",
+                "${config:infineon.openocdPath}/openocd/scripts/",
+            ],
+            "configFiles": [
+                "${config:zephyr.basePath}/boards/arm/cy8cproto_062_4343w/support/openocd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "-enable-pretty-printing",
+                "set remotetimeout 15",
+                // Comment this next line out if you don't want to reload program
+                "monitor program {${config:zephyr.basePath}/build/zephyr/zephyr.elf}",
+                "monitor reset run",
+                "monitor psoc6 reset_halt sysresetreq"
+            ],
+            "numberOfProcessors": 2,
+            "targetProcessor": 1,  // Set to 0 for the CM0+, set to 1 for the CM4
+            "postStartSessionCommands": [       
+                // Needed if runToMain is false 
+                // Following two commands are needed to get gdb and openocd and HW all in sync. 
+                // Or, execution context (PC, stack, registers, etc.) look like they are from before reset. 
+                // The stepi, is a pretend instruction that does not actually do a stepi, but MUST be done 
+                // Its a documented workaround in openocd. Do a 'monitor help' to see more info 
+                // 
+                // An alternative command to use is "continue" instead of the following two 
+                "monitor gdb_sync",
+                "stepi"
+            ],
+            "overrideRestartCommands": [
+                "starti"
+            ],
+            "postRestartSessionCommands": [
+            ],
+            // svdFile is optional, it can be very large.
+            "svdFile": "${config:zephyr.psoc6.svdFilePath}",
+            "breakAfterReset": true,
+            "runToEntryPoint": "main",  // Specifies application entry point name where program will halt
+            "preLaunchTask": "west build",
+            "showDevDebugOutput": "none",
+            "presentation": {
+                "hidden": false,
+                "group": "CM4"
+            },
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 4
+            }
+        },
+        // When using 'attach', make sure your program is running on the board and that your
+        // executable matches the image in the chip exactly, or else strange things can happen
+        // with breakpoints, variables, etc.
+        {
+            "name": "Attach PSoC6 CM4",
+            "type": "cortex-debug",
+            "request": "attach",
+            "cwd": "${workspaceFolder}",
+            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.elf",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceFolder}",
+                "${config:infineon.openocdPath}/openocd/scripts/",
+            ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ENABLE_ACQUIRE 0"
+            ],
+            "configFiles": [
+                "${config:zephyr.basePath}/boards/arm/cy8cproto_062_4343w/support/openocd.cfg"
+            ],
+            "overrideAttachCommands": [
+                "set mem inaccessible-by-default off",
+                "-enable-pretty-printing",
+                "set remotetimeout 15",
+                "info threads"
+            ],
+            "numberOfProcessors": 2,
+            "targetProcessor": 1,  // Set to 0 for the CM0+, set to 1 for the CM4
+            "overrideRestartCommands": [
+                "starti"
+            ],
+            "postRestartSessionCommands": [
+            ],
+            // svdFile is optional, it can be very large.
+            "svdFile": "${config:zephyr.psoc6.svdFilePath}",
+            "breakAfterReset": true,
+            "runToEntryPoint": "main",    // Specifies application entry point name for restart/reset
+            "showDevDebugOutput": "none",
+            "presentation": {
+                "hidden": false,
+                "group": "CM4"
+            }
+        },
+        {
+            "name": "Erase PSoC6 CM4",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.hex",
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceFolder}",
+                "${config:infineon.openocdPath}/openocd/scripts/",
+            ],
+            "openOCDPreConfigLaunchCommands": [
+                "set DISABLE_SMIF 1"
+            ],
+            "configFiles": [
+                "${config:zephyr.basePath}/boards/arm/cy8cproto_062_4343w/support/openocd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "set remotetimeout 15",
+                "monitor reset init",
+                "monitor psoc6 sflash_restrictions 1",
+                "monitor erase_all"
+            ],
+            "postStartSessionCommands": [
+                "quit"
+            ],
+            "numberOfProcessors": 2,
+            "showDevDebugOutput": "none",
+            "presentation": {
+                "hidden": false,
+                "group": "CM4"
+            }
+        },
+        {
+            "name": "Program PSoC6 CM4",
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "executable": "${config:zephyr.basePath}/build/zephyr/zephyr.elf", //was .hex
+            "servertype": "openocd",
+            "searchDir": [
+                "${workspaceFolder}",
+                "${config:infineon.openocdPath}/openocd/scripts/",
+            ],
+            "configFiles": [
+                "${config:zephyr.basePath}/boards/arm/cy8cproto_062_4343w/support/openocd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "set remotetimeout 15",
+                "monitor psoc6 sflash_restrictions 1",
+                "monitor program {${config:zephyr.basePath}/build/zephyr/zephyr.hex}",
+                "monitor reset_config srst_only",
+                "monitor reset run",
+                "monitor psoc6.dap dpreg 0x04 0x00"
+            ],
+            "postStartSessionCommands": [
+                "quit"
+            ],
+            "numberOfProcessors": 2,
+            "preLaunchTask": "west build",
+            "showDevDebugOutput": "none",
+            "presentation": {
+                "hidden": false,
+                "group": "CM4"
+            }
+        }
+    ]
+}

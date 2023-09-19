@@ -1,0 +1,22 @@
+{
+    "cortex-debug.armToolchainPath": "${userHome}/.local/zephyr-sdk-0.16.1/arm-zephyr-eabi/",
+    "cortex-debug.openocdPath": "${config:infineon.openocdPath}/openocd/bin/openocd",
+    "cortex-debug.gdbPath":  "${userHome}/.local/zephyr-sdk-0.16.1/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
+    "zephyr.venvPath": "${config:zephyr.basePath}/../.venv",
+
+    /*
+        Optional Parameters
+    */
+    // Alternative place to declare variables instead of user folder
+    // "modustoolbox.toolsPath": "${userHome}/ModusToolbox/tools_3.1",
+    "zephyr.basePath": "${userHome}/zephyrproject/zephyr",
+    "infineon.openocdPath": "${userHome}/.local/bin/",
+
+    // PSoC6 Build Folder
+    "zephyr.psoc6.buildFolder": "build",
+
+    // SVD File Paths
+    "zephyr.psoc6.svdFilePath": "${config:zephyr.basePath}/../modules/hal/infineon/mtb-pdl-cat1/devices/COMPONENT_CAT1A/svd/psoc6_02.svd",
+
+    "C_Cpp.errorSquiggles": "disabled",
+}

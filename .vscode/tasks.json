@@ -1,0 +1,59 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "west build",
+            "type": "process",
+            "command": "bash",
+            "args": [
+                "--norc",
+                "-c",
+                "source ${config:zephyr.venvPath}/bin/activate; west build -p auto -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+            ],
+            "windows": {
+                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
+                "args": [
+                    "-c",
+                    "export PATH=/bin:/usr/bin:$PATH ; dos2unix -q ${config:zephyr.venvPath}/Scripts/activate; source ${config:zephyr.venvPath}/Scripts/activate; west build -p auto -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+                ]
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "west flash",
+            "type": "process",
+            "command": "bash",
+            "args": [
+                "--norc",
+                "-c",
+                "source ${config:zephyr.venvPath}/bin/activate; west flash -r pyocd -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+            ],
+            "windows": {
+                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
+                "args": [
+                    "-c",
+                    "export PATH=/bin:/usr/bin:$PATH ; dos2unix -q ${config:zephyr.venvPath}/Scripts/activate; source ${config:zephyr.venvPath}/Scripts/activate; west flash -d ${config:zephyr.basePath}/${config:zephyr.psoc6.buildFolder}/"
+                ]
+            },
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "projectPath",
+            "description": "Select project path to build",
+            "default": ""
+        }
+    ]
+}
