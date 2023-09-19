@@ -135,10 +135,10 @@ and restart the program, or you can open a second terminal window and
 leave tio running in it all the time. Here is what I see:
 
 ```
-\[tio 17:20:26\] tio v1.32
-\[tio 17:20:26\] Press ctrl-t q to quit
-\[tio 17:20:26\] Connected
-\*\*\* Booting Zephyr OS build zephyr-v3.4.0-1843-g68ee177a01f3 \*\*\*
+[tio 17:20:26] tio v1.32
+[tio 17:20:26] Press ctrl-t q to quit
+[tio 17:20:26] Connected
+*** Booting Zephyr OS build zephyr-v3.4.0-1843-g68ee177a01f3 ***
 Starting Observer Demo
 Started scanning...
 Exiting main thread.
@@ -168,8 +168,8 @@ The download is quite large (\~92MB) so it may take a while to download.
 Then install VSCode deb package with the commands:
 
 ```
-cd \~/Downloads
-sudo apt install ./ code\_1.82.1-1694163687\_amd64.deb
+cd ~/Downloads
+sudo apt install ./code_1.82.1-1694163687_amd64.deb
 ```
 
 Note the version you download will most likely be different than 1.82.1,
@@ -192,7 +192,7 @@ subdirectory of \~/Documents/bluetooth\_observer.
 Fetch the vscode settings from github:
 
 ```
-cd \~/Documents
+cd ~/Documents
 git clone https://github.com/lawrencek52/vscode\-infineon-psoc6-openocd.git
 ```
 
@@ -200,8 +200,8 @@ then copy the appropriate files into the .vscode subdirectory of
 \~/Documents/bluetooth\_observer. Use the following commands.
 
 ```
-cd \~/Documents/vscode-infineon-psoc6-openocd
-cp -r .vscode \~/Documents/bluetooth\_observer/
+cd ~/Documents/vscode-infineon-psoc6-openocd
+cp -r .vscode ~/Documents/bluetooth_observer/
 ```
 
 **Starting VSCode and open the sample program**
@@ -218,7 +218,7 @@ After starting VSCode you will see the IDE:
 ![](media/image2.jpeg)
 
 Open the bluetooth-observer by clicking “Open Folder” on the start menu,
-and selecting Documents/bluetooth\_observer.
+and selecting the directory Documents/bluetooth\_observer.
 
 **Compile and start debugging the sample program**
 
@@ -242,11 +242,9 @@ tio /dev/ttyACM0
 tio will start and connect to the board, typical output from tio is:
 
 ```
-\[tio 12:09:17\] tio v1.32
-
-\[tio 12:09:17\] Press ctrl-t q to quit
-
-\[tio 12:09:17\] Connected
+[tio 12:09:17] tio v1.32
+[tio 12:09:17] Press ctrl-t q to quit
+[tio 12:09:17] Connected
 ```
 
 Now start the program by pressing the “play” icon in the top center of
@@ -256,44 +254,21 @@ program, this is what I see:
 ```
 lawrence@Ubuntu22:\~/Documents/bluetooth\_observer$ tio /dev/ttyACM0
 
-\[tio 12:13:42\] tio v1.32
-
-\[tio 12:13:42\] Press ctrl-t q to quit
-
-\[tio 12:13:42\] Connected
- 
- Starting Observer Demo
- 
- Started scanning...
- 
- Exiting main thread.
- 
- Device found: 27:5C:81:09:95:71 (random) (RSSI -75), type 3, AD data
- len 31
- 
- Device found: 2B:BF:B8:75:CE:EB (random) (RSSI -39), type 3, AD data
- len 31
- 
- Device found: F1:97:F3:14:25:CC (random) (RSSI -92), type 0, AD data
- len 21
- 
- Device found: CC:F4:11:86:2C:D9 (public) (RSSI -92), type 2, AD data
- len 28
- 
- Device found: 11:F9:8E:8F:AA:20 (random) (RSSI -93), type 3, AD data
- len 31
- 
- Device found: 44:05:A5:41:72:9A (random) (RSSI -98), type 2, AD data
- len 28
- 
- Device found: 6D:AD:AD:E2:EA:D5 (random) (RSSI -70), type 2, AD data
- len 28
- 
- Device found: 7F:7F:FF:7E:76:F1 (random) (RSSI -92), type 2, AD data
- len 28
- 
- Device found: CD:9D:FC:15:9A:FE (random) (RSSI -83), type 3, AD data
- len 8
+[tio 12:13:42] tio v1.32
+[tio 12:13:42] Press ctrl-t q to quit
+[tio 12:13:42] Connected
+Starting Observer Demo
+Started scanning...
+Exiting main thread.
+Device found: 27:5C:81:09:95:71 (random) (RSSI -75), type 3, AD data len 31
+Device found: 2B:BF:B8:75:CE:EB (random) (RSSI -39), type 3, AD data len 31
+Device found: F1:97:F3:14:25:CC (random) (RSSI -92), type 0, AD data len 21
+Device found: CC:F4:11:86:2C:D9 (public) (RSSI -92), type 2, AD data len 28
+Device found: 11:F9:8E:8F:AA:20 (random) (RSSI -93), type 3, AD data len 31
+Device found: 44:05:A5:41:72:9A (random) (RSSI -98), type 2, AD data len 28
+Device found: 6D:AD:AD:E2:EA:D5 (random) (RSSI -70), type 2, AD data len 28
+Device found: 7F:7F:FF:7E:76:F1 (random) (RSSI -92), type 2, AD data len 28
+Device found: CD:9D:FC:15:9A:FE (random) (RSSI -83), type 3, AD data len 8
 ```
 
 **Adding breakpoints**
